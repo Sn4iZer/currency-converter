@@ -18,8 +18,7 @@ Works out of the box on Windows, macOS and Linux.
 
 ## 🖼️ Preview
 
-![Screenshot](assets/screenshot.png)  
-*(replace with your own image or remove this line)*
+<img width="380" height="397" alt="image" src="https://github.com/user-attachments/assets/bb664637-f315-4411-8225-fb7110a5e269" />
 
 ---
 
