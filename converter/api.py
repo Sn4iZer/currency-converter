@@ -1,9 +1,9 @@
 import os
-import requests
+import requests # type: ignore
 import json
 from datetime import datetime, timedelta
 from pathlib import Path
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore
 
 # ---------- environment ----------
 load_dotenv()

@@ -1,4 +1,4 @@
-import customtkinter as ctk
+import customtkinter as ctk # type: ignore
 import unicodedata
 
 class CurrencyPicker(ctk.CTkToplevel):

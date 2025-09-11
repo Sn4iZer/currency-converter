@@ -1,4 +1,4 @@
-import customtkinter as ctk
+import customtkinter as ctk # type: ignore
 from tkinter import messagebox
 from converter.logic import exchange, currencies
 import threading, queue, time
@@ -123,7 +123,7 @@ class App(ctk.CTk):
         while True:
             time.sleep(30*60)          # 30 minutes
             try:
-                _singleton.get_rates.__wrapped__()  # force refresh
+                _singleton.get_rates.__wrapped__()  # type: ignore # force refresh
                 self.refresh_q.put("updated")
             except Exception as e:
                 self.refresh_q.put(f"error: {e}")
