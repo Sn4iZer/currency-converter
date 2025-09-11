@@ -12,7 +12,6 @@ Works out of the box on Windows, macOS and Linux.
 - 🌓 One-click **Dark / Light** theme switch  
 - 💾 Local 1-hour cache → stays inside free API quota  
 - 🧵 Background auto-refresh (30 min) – GUI never freezes  
-- 📦 Single-file executable available (no Python required)  
 
 ---
 
