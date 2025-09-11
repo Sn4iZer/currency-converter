@@ -5,7 +5,7 @@ import threading, queue, time
 from converter.logic import _singleton   # the client instance
 from datetime import datetime, timedelta
 from converter import api
-
+from currency_picker import CurrencyPicker
 
 ctk.set_appearance_mode("System")   # Dark/Light
 ctk.set_default_color_theme("blue")
@@ -51,8 +51,9 @@ class App(ctk.CTk):
         # from
         self.from_var = ctk.StringVar(value="USD")
         ctk.CTkLabel(self, text="From").grid(row=2, column=0, sticky="w", **pad)
-        ctk.CTkOptionMenu(self, variable=self.from_var, values=self.currencies,
-                        command=lambda _: self.convert()).grid(row=2, column=1, sticky="ew", **pad)
+        self.from_btn = ctk.CTkButton(self, textvariable=self.from_var,
+                              command=lambda: self._pick_currency(self.from_var))
+        self.from_btn.grid(row=2, column=1, sticky="ew", **pad)
 
         # swap button
         self.swap_btn = ctk.CTkButton(self, text="⇄", width=40, command=self._swap)
@@ -61,8 +62,9 @@ class App(ctk.CTk):
         # to
         self.to_var = ctk.StringVar(value="EUR")
         ctk.CTkLabel(self, text="To").grid(row=3, column=0, sticky="w", **pad)
-        ctk.CTkOptionMenu(self, variable=self.to_var, values=self.currencies,
-                        command=lambda _: self.convert()).grid(row=3, column=1, sticky="ew", **pad)
+        self.to_btn = ctk.CTkButton(self, textvariable=self.to_var,
+                            command=lambda: self._pick_currency(self.to_var))
+        self.to_btn.grid(row=3, column=1, sticky="ew", **pad)
 
         # result
         self.result_lbl = ctk.CTkLabel(self, text="", font=ctk.CTkFont(size=20, weight="bold"))
@@ -78,6 +80,10 @@ class App(ctk.CTk):
         self.appearance_menu.grid(row=6, column=2, padx=10, pady=10, sticky="e")
 
     # --------------------------------------------------
+    def _pick_currency(self, stringvar):
+        CurrencyPicker(self, self.currencies, lambda code: (stringvar.set(code), self.convert()))
+
+    
     def convert(self):
         try:
             amt = float(self.amount_var.get())
